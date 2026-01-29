@@ -28,12 +28,12 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       run: |
-        docker build -t $ECR_REGISTRY/clo835-assignment1-webapp:latest ./webapp
-        docker push $ECR_REGISTRY/clo835-assignment1-webapp:latest
+        docker build -t $ECR_REGISTRY/webapp-repo:latest ./webapp
+        docker push $ECR_REGISTRY/webapp-repo:latest
 
     - name: Build and Push MySQL
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       run: |
-        docker build -t $ECR_REGISTRY/clo835-assignment1-mysql:latest ./mysql
-        docker push $ECR_REGISTRY/clo835-assignment1-mysql:latest
+        docker build -t $ECR_REGISTRY/mysql-repo:latest ./mysql
+        docker push $ECR_REGISTRY/mysql-repo:latest
