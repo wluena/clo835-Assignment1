@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Database</title>
+    <style>
+        body { background-color: {{ color }}; font-family: sans-serif; text-align: center; padding-top: 50px; }
+        .container { background: white; padding: 20px; display: inline-block; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Database</h1>
+        <form action="/add_emp" method="POST">
+            <input type="text" name="emp_id" placeholder="ID"><br><br>
+            <input type="text" name="first_name" placeholder="First Name"><br><br>
+            <input type="text" name="last_name" placeholder="Last Name"><br><br>
+            <button type="submit">Add Employee</button>
+        </form>
+    </div>
+</body>
+</html>
