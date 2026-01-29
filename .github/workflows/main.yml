@@ -24,15 +24,9 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build and Push
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-      run: |
-        # Build and Push Web App (assuming your Dockerfile is in the root or /webapp)
-        docker build -t $ECR_REGISTRY/webapp-repo:latest ./webapp
-        docker push $ECR_REGISTRY/webapp-repo:latest
-        
-        
-        # Build and Push MySQL (assuming you have a mysql folder with a Dockerfile)
-        # docker build -t $ECR_REGISTRY/mysql-repo:latest ./mysql
-        # docker push $ECR_REGISTRY/mysql-repo:latest
+    - name: Build and Push Web App
+    env:
+      ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+    run: |
+      docker build -t $ECR_REGISTRY/clo835-assignment1:latest ./webapp
+      docker push $ECR_REGISTRY/clo835-assignment1:latest
