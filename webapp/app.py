@@ -1,10 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template
 import pymysql
 import os
 
 app = Flask(__name__)
 
-# These variables should match what you set in your Terraform/Kubernetes env
+# Database configuration from Environment Variables
 DB_HOST = os.environ.get("DB_HOST", "localhost")
 DB_USER = os.environ.get("DB_USER", "root")
 DB_PASS = os.environ.get("DB_PASS", "password")
@@ -12,16 +12,26 @@ DB_NAME = os.environ.get("DB_NAME", "testdb")
 
 @app.route('/')
 def index():
+    # Get the background color from the Environment Variable (defaults to white)
+    bg_color = os.environ.get("APP_COLOR", "white")
+    
+    db_version = "Unknown"
+    status = "Connected"
+    
     try:
         # Attempt to connect to the database
         db = pymysql.connect(host=DB_HOST, user=DB_USER, password=DB_PASS, database=DB_NAME)
         cursor = db.cursor()
         cursor.execute("SELECT VERSION()")
         data = cursor.fetchone()
-        return f"<h1>Success!</h1><p>Connected to Database. Version: {data[0]}</p>"
+        db_version = data[0]
+        db.close()
     except Exception as e:
-        return f"<h1>Error</h1><p>Could not connect to database: {str(e)}</p>"
+        status = f"Error: {str(e)}"
+
+    # Pass the color and DB info to the HTML template
+    return render_template('index.html', color=bg_color, version=db_version, status=status)
 
 if __name__ == "__main__":
-    # Port 8080 is common for this assignment
+    # Ensure it listens on all interfaces
     app.run(host='0.0.0.0', port=8080)
