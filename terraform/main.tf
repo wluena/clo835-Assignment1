@@ -19,7 +19,7 @@ data "aws_subnets" "default" {
 resource "aws_ecr_repository" "webapp" {
   name                 = "webapp-repo"
   image_tag_mutability = "MUTABLE"
-  force_delete         = true # Useful for students to cleanup easily
+  force_delete         = true # Useful to cleanup easily
 }
 
 resource "aws_ecr_repository" "mysql" {
