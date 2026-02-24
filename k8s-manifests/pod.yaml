@@ -10,4 +10,10 @@ spec:
     image: 939600984337.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest
     ports:
     - containerPort: 8080
-    # NOTE: We have removed the 'env' section entirely
+    env:
+    - name: DB_HOST
+      value: "mysql-service" # This MUST match the service name above
+    - name: DB_USER
+      value: "root"
+    - name: DB_PASSWORD
+      value: "pw"

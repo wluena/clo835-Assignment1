@@ -8,19 +8,6 @@ spec:
   containers:
   - name: mysql
     image: mysql:5.7
-    args:
-      - "--performance-schema=OFF"
-      - "--innodb-buffer-pool-size=5M"
-      - "--innodb-log-buffer-size=256K"
-      - "--query-cache-size=0"
-      - "--max-connections=5"
-      - "--key-buffer-size=8K"
-    resources:
-      requests:
-        memory: "128Mi"
-        cpu: "50m"
-      limits:
-        memory: "256Mi" # Strictly capped to stay under the t2.micro limit
     env:                                
     - name: MYSQL_ROOT_PASSWORD
       value: "pw"
@@ -38,4 +25,5 @@ spec:
     app: mysql
   ports:
     - port: 3306
+      targetPort: 3306
   type: ClusterIP
