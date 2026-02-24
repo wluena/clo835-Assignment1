@@ -12,20 +12,22 @@ spec:
       labels:
         app: employees
     spec:
+      imagePullSecrets:
+      - name: ecr-secret   #REQUIRED for ECR
       containers:
       - name: webapp
-        image: 939600984337.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest # check rollingupdate
-        imagePullPolicy: IfNotPresent
+        image: 939600984337.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest
+        imagePullPolicy: Always
         ports:
-        - containerPort: 8080 # Or whatever port your app listens on
+        - containerPort: 8080
         env:
-        - name: DBHOST
+        - name: DB_HOST
           value: "mysql-service"
-        - name: DBPORT
+        - name: DB_PORT
           value: "3306"
-        - name: DBUSER
+        - name: DB_USER
           value: "root"
-        - name: DBPWD
+        - name: DB_PASSWORD
           value: "pw"
-        - name: DBNAME
+        - name: DB_NAME
           value: "webapp"
