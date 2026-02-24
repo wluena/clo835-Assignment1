@@ -8,7 +8,13 @@ spec:
   containers:
   - name: mysql
     image: mysql:5.7
-    args: ["--performance-schema=OFF"]
+    args: 
+    - "--performance-schema=OFF"
+    - "--innodb-buffer-pool-size=5M"
+    - "--innodb-log-buffer-size=256K"
+    - "--query-cache-size=0"
+    - "--max-connections=5"
+    - "--key-buffer-size=8"
     env:                               
     - name: MYSQL_ROOT_PASSWORD
       value: "pw"
