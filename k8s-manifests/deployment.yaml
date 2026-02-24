@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: 939600984337.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:v2 # check rollingupdate
+        image: 939600984337.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest # check rollingupdate
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080 # Or whatever port your app listens on
