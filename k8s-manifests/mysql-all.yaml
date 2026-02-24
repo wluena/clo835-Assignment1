@@ -7,14 +7,7 @@ metadata:
 spec:
   containers:
   - name: mysql
-    image: mysql:5.7
-    args: ["--performance-schema=OFF"] # Reduces memory usage by ~150MB
-    resources:
-      requests:
-        memory: "256Mi"
-        cpu: "100m"
-      limits:
-        memory: "1Gi" # This overrides the hidden lab limits and gives MySQL 1GB of breathing room
+    image: mysql:8
     env:                                
     - name: MYSQL_ROOT_PASSWORD
       value: "pw"
