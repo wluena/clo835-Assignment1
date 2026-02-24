@@ -3,18 +3,11 @@ kind: Pod
 metadata:
   name: webapp-pod
   labels:
-    app: employees  # Matches Req 3 later
+    app: employees
 spec:
   containers:
   - name: webapp
     image: 939600984337.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest
-    imagePullPolicy: IfNotPresent  # <--- ADDED THIS LINE
     ports:
     - containerPort: 8080
-    env:
-    - name: DB_HOST
-      value: "mysql-service"
-    - name: DB_USER
-      value: "root"
-    - name: DB_PASSWORD
-      value: "pw"
+    # NOTE: We have removed the 'env' section entirely
