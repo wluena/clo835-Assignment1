@@ -8,6 +8,7 @@ spec:
   containers:
   - name: webapp
     image: 939600984337.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest
+    imagePullPolicy: Always  # <--- Added this line
     ports:
     - containerPort: 8080
     env:
