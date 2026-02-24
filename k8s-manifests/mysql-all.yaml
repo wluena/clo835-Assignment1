@@ -11,10 +11,6 @@ spec:
     args: 
     - "--performance-schema=OFF"
     - "--innodb-buffer-pool-size=5M"
-    - "--innodb-log-buffer-size=256K"
-    - "--query-cache-size=0"
-    - "--max-connections=5"
-    - "--key-buffer-size=8"
     env:                               
     - name: MYSQL_ROOT_PASSWORD
       value: "pw"
