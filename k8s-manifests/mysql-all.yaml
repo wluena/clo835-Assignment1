@@ -8,9 +8,6 @@ spec:
   containers:
   - name: mysql
     image: mysql:5.7
-    args: 
-    - "--performance-schema=OFF"
-    - "--innodb-buffer-pool-size=5M"
     env:                               
     - name: MYSQL_ROOT_PASSWORD
       value: "pw"
