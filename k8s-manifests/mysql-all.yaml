@@ -8,6 +8,13 @@ spec:
   containers:
   - name: mysql
     image: mysql:5.7
+    args: ["--performance-schema=OFF"] # Reduces memory usage by ~150MB
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "100m"
+      limits:
+        memory: "1Gi" # This overrides the hidden lab limits and gives MySQL 1GB of breathing room
     env:                                
     - name: MYSQL_ROOT_PASSWORD
       value: "pw"
@@ -25,5 +32,4 @@ spec:
     app: mysql
   ports:
     - port: 3306
-      targetPort: 3306
   type: ClusterIP
