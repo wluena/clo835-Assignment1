@@ -3,21 +3,29 @@ kind: Deployment
 metadata:
   name: webapp-deployment
 spec:
-  replicas: 2 # Requirement: ReplicaSet logic
+  replicas: 3
   selector:
     matchLabels:
-      app: webapp
+      app: employees
   template:
     metadata:
       labels:
-        app: webapp
+        app: employees
     spec:
       containers:
       - name: webapp
         image: 939600984337.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest
-        imagePullPolicy: IfNotPresent  # <--- Added this line
+        imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080
+        - containerPort: 8080 # Or whatever port your app listens on
         env:
         - name: DBHOST
           value: "mysql-service"
+        - name: DBPORT
+          value: "3306"
+        - name: DBUSER
+          value: "root"
+        - name: DBPWD
+          value: "pw"
+        - name: DBNAME
+          value: "webapp"
