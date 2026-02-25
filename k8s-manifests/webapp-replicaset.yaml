@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: webapp-replicaset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employees
+  template:
+    metadata:
+      labels:
+        app: employees
+    spec:
+      imagePullSecrets:
+      - name: ecr-secret
+      containers:
+      - name: webapp
+        image: 939600984337.dkr.ecr.us-east-1.amazonaws.com/webapp-repo:latest
+        ports:
+        - containerPort: 8080
